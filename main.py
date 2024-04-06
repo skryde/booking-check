@@ -49,13 +49,12 @@ def do_web_scraping() -> Result:
             if d.is_displayed() and d.text == text:
                 result = Result.FOUND
 
-        driver.save_screenshot(screenshot_file_name)
-
-    except Exception as e:
+    except Exception as scraping_exception:
         result = Result.ERROR
-        logger.error("error in scraping process", exc_info=e)
+        logger.error("error in scraping process", exc_info=scraping_exception)
 
     finally:
+        driver.save_screenshot(screenshot_file_name)
         driver.quit()
 
     return result
