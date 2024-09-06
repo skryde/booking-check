@@ -1,16 +1,17 @@
 services:
   scrapper:
     build: ./scrapper/
+    restart: unless-stopped
     environment:
       - NATS_HOST=nats://server:4222
       - NATS_SCRAPPER_RESULT_TOPIC_NAME=${NATS_SCRAPPER_RESULT_TOPIC_NAME}
   
   server:
     build: ./server/
+    restart: unless-stopped
     env_file:
       - .env
     environment:
       - DB_PATH=db
-
     volumes:
       - ./server_db:/app/db:rw
