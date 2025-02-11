@@ -44,7 +44,7 @@ func buildConfiguration() (configuration, error) {
 
 	botOwnerID, err := readOSEnv("TELEGRAM_BOT_OWNER_ID")
 	if err != nil {
-		return configuration{}, err
+		botOwnerID = "-1"
 	}
 
 	ownerID, err := strconv.ParseInt(botOwnerID, 10, 64)
