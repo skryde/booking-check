@@ -1,6 +1,7 @@
 services:
   scrapper:
     build: ./scrapper/
+    init: true
     restart: unless-stopped
     environment:
       - NATS_HOST=nats://server:4222
